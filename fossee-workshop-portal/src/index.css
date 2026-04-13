@@ -1,0 +1,138 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;700&display=swap');
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Montserrat", sans-serif;
+  --font-mono: "Space Grotesk", monospace;
+
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+@layer base {
+  :root {
+    --background: 36 30% 94%; /* #f5f2ed - Warm off-white */
+    --foreground: 0 0% 10%; /* #1a1a1a - Deep charcoal */
+    --card: 36 30% 94%;
+    --card-foreground: 0 0% 10%;
+    --popover: 36 30% 94%;
+    --popover-foreground: 0 0% 10%;
+    --primary: 36 30% 10%;
+    --primary-foreground: 36 30% 94%;
+    --secondary: 36 10% 85%;
+    --secondary-foreground: 0 0% 10%;
+    --muted: 36 10% 80%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 38 45% 55%; /* Bronze/Gold accent */
+    --accent-foreground: 36 30% 94%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 10% / 0.1;
+    --input: 0 0% 10% / 0.1;
+    --ring: 38 45% 55%;
+    --radius: 0px; /* Sharp corners for prestige */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-light tracking-tight;
+  }
+}
+
+/* Luxury Utilities */
+
+.text-prestige {
+  @apply font-serif italic;
+}
+
+.oval-mask {
+  clip-path: ellipse(50% 50% at 50% 50%);
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  @apply rotate-180 text-[10px] uppercase tracking-[0.2em] font-semibold opacity-50;
+}
+
+.nav-grid {
+  @apply grid border-b border-foreground/10;
+}
+
+.nav-item {
+  @apply p-4 text-[10px] uppercase tracking-[0.15em] font-bold border-r border-foreground/10 last:border-r-0 transition-colors hover:bg-foreground/5;
+}
+
+.prestige-card {
+  @apply border border-foreground/10 bg-transparent transition-all duration-500 hover:border-accent/50;
+}
+
+.prestige-button {
+  @apply rounded-none border border-foreground/20 px-8 py-6 text-[11px] uppercase tracking-[0.2em] font-bold transition-all hover:bg-foreground hover:text-background;
+}
+
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-background;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-foreground/20;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-accent;
+}
